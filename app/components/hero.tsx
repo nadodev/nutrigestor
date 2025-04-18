@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { DashboardMockup } from "./dashboardMock";
 
 export function Hero() {
   return (
@@ -7,7 +8,7 @@ export function Hero() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="relative py-32 overflow-hidden"
+      className="relative  overflow-hidden"
       id="home"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-background/0 to-background/80"></div>
@@ -29,7 +30,7 @@ export function Hero() {
           </div>
           {/* Imagem abaixo do texto */}
           <div className="mx-auto">
-            <img src="https://webdiet.com.br/site/assets/img/tela.jpg" alt="Imagem ilustrativa" className="rounded-lg shadow-lg" />
+            <DashboardMockup />
           </div>
         </div>
       </div>
