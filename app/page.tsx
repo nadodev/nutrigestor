@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { CheckCircle2, Calendar, Users, Send, Bell, Shield, FileText, BarChart3, Clock, Star } from "lucide-react";
+import { CheckCircle2, Calendar, Users, Send, Bell, Shield, FileText, BarChart3, Clock, Star, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { MainNav } from "@/app/components/main-nav";
 import { WhatsAppButton } from "@/app/components/whatsapp-button";
@@ -11,23 +11,28 @@ import { Hero } from "./components/hero";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-b from-background via-primary/5 to-background">
       <MainNav />
       <WhatsAppButton />
+      
       {/* Header */}
       <Hero/>
+      
       {/* Seção de Benefícios */}
       <motion.section 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="py-24"
+        className="py-24 relative overflow-hidden"
         id="beneficios"
       >
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Benefícios para seu Consultório</h2>
-          <p className="text-xl text-muted-foreground text-center mb-16">Tudo que você precisa para gerenciar seu consultório com eficiência</p>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent opacity-50"></div>
+        <div className="container mx-auto px-4 relative">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">Benefícios para seu Consultório</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">Tudo que você precisa para gerenciar seu consultório com eficiência e profissionalismo</p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               { icon: FileText, title: "Criação Rápida de Planos", description: "Templates prontos para você personalizar e criar planos alimentares em minutos." },
@@ -37,13 +42,21 @@ export default function Home() {
               { icon: Bell, title: "Notificações e Lembretes", description: "Receba alertas automáticos de consultas e lembretes para garantir a adesão do paciente." },
               { icon: Shield, title: "Segurança e Privacidade", description: "Armazenamento seguro de dados de pacientes, em conformidade com as regulamentações de privacidade." },
             ].map((item, index) => (
-              <Card key={index} className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-primary/10">
-                <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                  <item.icon className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{item.description}</p>
-              </Card>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-primary/20 bg-gradient-to-b from-background to-primary/5 group">
+                  <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors duration-300">
+                    <item.icon className="h-8 w-8 text-primary group-hover:scale-110 transition-transform duration-300" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors duration-300">{item.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -55,16 +68,19 @@ export default function Home() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="py-24 bg-muted/30"
+        className="py-24 bg-gradient-to-b from-primary/5 to-background relative"
         id="demonstracao"
       >
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Veja Como Funciona</h2>
-          <p className="text-xl text-muted-foreground text-center mb-16">Interface intuitiva e fácil de usar</p>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent opacity-50"></div>
+        <div className="container mx-auto px-4 relative">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">Veja Como Funciona</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">Interface intuitiva e fácil de usar, desenvolvida para nutricionistas</p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h3 className="text-2xl font-semibold mb-4">Interface Intuitiva e Fácil de Usar</h3>
-              <p className="text-muted-foreground mb-8 text-lg">
+            <div className="space-y-6">
+              <h3 className="text-2xl font-semibold">Interface Intuitiva e Fácil de Usar</h3>
+              <p className="text-muted-foreground text-lg">
                 Nossa plataforma foi desenvolvida pensando na facilidade de uso, permitindo que você foque no que realmente importa: seus pacientes.
               </p>
               <ul className="space-y-4">
@@ -74,21 +90,40 @@ export default function Home() {
                   "Gestão completa de pacientes",
                   "Relatórios automáticos de progresso"
                 ].map((item, index) => (
-                  <li key={index} className="flex items-center gap-3 text-lg">
-                    <CheckCircle2 className="h-6 w-6 text-primary" />
-                    <span>{item}</span>
-                  </li>
+                  <motion.li 
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-center gap-3 text-lg group"
+                  >
+                    <div className="h-8 w-8 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                      <CheckCircle2 className="h-5 w-5 text-primary" />
+                    </div>
+                    <span className="group-hover:text-primary transition-colors duration-300">{item}</span>
+                  </motion.li>
                 ))}
               </ul>
+              <Button className="mt-8 bg-primary hover:bg-primary/90 group">
+                Comece Agora
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </Button>
             </div>
-            <div className="relative h-[500px] rounded-xl overflow-hidden shadow-2xl border-2 border-primary/20">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="relative h-[500px] rounded-xl overflow-hidden shadow-2xl border-2 border-primary/20"
+            >
               <Image
                 src="/dashboard-preview.png"
                 alt="Preview do Dashboard"
                 fill
                 className="object-cover"
               />
-            </div>
+            </motion.div>
           </div>
         </div>
       </motion.section>
@@ -99,12 +134,15 @@ export default function Home() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="py-24"
+        className="py-24 relative"
         id="depoimentos"
       >
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">O Que Dizem Nossos Usuários</h2>
-          <p className="text-xl text-muted-foreground text-center mb-16">Veja o que os nutricionistas estão falando sobre nossa plataforma</p>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent opacity-50"></div>
+        <div className="container mx-auto px-4 relative">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">O Que Dizem Nossos Usuários</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">Veja o que os nutricionistas estão falando sobre nossa plataforma</p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
@@ -123,18 +161,26 @@ export default function Home() {
                 text: "Os relatórios de progresso me ajudam a acompanhar meus pacientes de forma mais eficiente."
               }
             ].map((testimonial, index) => (
-              <Card key={index} className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-primary/10">
-                <div className="flex gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 text-yellow-400 fill-yellow-400" />
-                  ))}
-                </div>
-                <p className="text-muted-foreground mb-6 text-lg">"{testimonial.text}"</p>
-                <div>
-                  <p className="font-semibold text-lg">{testimonial.name}</p>
-                  <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                </div>
-              </Card>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-primary/20 bg-gradient-to-b from-background to-primary/5 group">
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="h-5 w-5 text-yellow-400 fill-yellow-400" />
+                    ))}
+                  </div>
+                  <p className="text-muted-foreground mb-6 text-lg group-hover:text-primary/90 transition-colors duration-300">"{testimonial.text}"</p>
+                  <div>
+                    <p className="font-semibold text-lg group-hover:text-primary transition-colors duration-300">{testimonial.name}</p>
+                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                  </div>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -146,14 +192,14 @@ export default function Home() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="py-24 bg-muted/30"
+        className="py-24 bg-gradient-to-b from-background to-primary/5 relative"
         id="planos"
       >
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Escolha o Plano Ideal</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">Escolha o Plano Ideal</h2>
           <p className="text-xl text-muted-foreground text-center mb-16">Planos flexíveis para atender às suas necessidades</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Card className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-primary/10">
+            <Card className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-primary/20 bg-gradient-to-b from-background to-primary/5">
               <h3 className="text-2xl font-bold mb-4">Plano Gratuito</h3>
               <p className="text-4xl font-bold mb-6">R$ 0<span className="text-lg text-muted-foreground">/mês</span></p>
               <ul className="space-y-4 mb-8">
@@ -176,7 +222,7 @@ export default function Home() {
               </Button>
             </Card>
 
-            <Card className="p-8 border-primary relative hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+            <Card className="p-8 border-primary/20 relative hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-gradient-to-b from-background to-primary/5">
               <div className="absolute top-0 right-0 bg-primary text-white px-6 py-2 rounded-bl-lg font-semibold">
                 Popular
               </div>
@@ -215,7 +261,7 @@ export default function Home() {
         className="py-24"
       >
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Pronto para Transformar seu Consultório?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">Pronto para Transformar seu Consultório?</h2>
           <p className="text-xl text-muted-foreground mb-12">
             Comece agora mesmo e experimente todas as funcionalidades por 14 dias gratuitamente.
           </p>
@@ -231,7 +277,7 @@ export default function Home() {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="bg-muted/50 py-16"
+        className="bg-gradient-to-b from-primary/5 to-background py-16"
       >
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
@@ -260,7 +306,7 @@ export default function Home() {
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors block">Termos de Uso</a>
             </div>
           </div>
-          <div className="mt-12 pt-8 border-t border-primary/10 text-center text-muted-foreground">
+          <div className="mt-12 pt-8 border-t border-primary/20 text-center text-muted-foreground">
             © 2024 NutriPlataforma. Todos os direitos reservados.
           </div>
         </div>

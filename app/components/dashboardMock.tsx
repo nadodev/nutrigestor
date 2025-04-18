@@ -2,88 +2,113 @@ import { Calendar, Search, UserPlus } from "lucide-react";
 
 export function DashboardMockup() {
   const patients = [
-    { name: "Carol", modified: "16/01/2025 - 00:21:33" },
-    { name: "Maria Clara", modified: "16/01/2025 - 00:21:49" },
-    { name: "Rodrigo", modified: "16/01/2025 - 00:21:42" },
-    { name: "Steph", modified: "08/01/2025 - 08:31:57" },
-    { name: "Ferdinando", modified: "17/12/2024 - 09:39:47" }
+    { name: "Ana Silva", lastVisit: "15/03/2024", status: "Em dia", progress: 85 },
+    { name: "Carlos Oliveira", lastVisit: "14/03/2024", status: "Em dia", progress: 60 },
+    { name: "Mariana Costa", lastVisit: "13/03/2024", status: "Em dia", progress: 45 },
   ];
 
-  const appointments = [
-    { name: "Consulta de Maria Clara Miranda", date: "Concluído em 16/01/2025", completed: true },
-    { name: "Consulta de Paciente", date: "Concluído em 16/01/2025", completed: true },
-    { name: "Consulta de Paciente", date: "Concluído em 16/01/2025", completed: true },
-    { name: "Enviar NF para meu paciente", date: "29/05/2025 - daqui a 133 dias", completed: false }
+  const stats = [
+    { label: "Pacientes Ativos", value: "24", change: "+12%" },
+    { label: "Consultas Hoje", value: "8", change: "+2" },
+    { label: "Planos Criados", value: "18", change: "+5" },
   ];
 
   return (
-    <div className="flex bg-gray-50 text-gray-800 font-sans">
-      {/* Sidebar */}
-      <div className="w-56 bg-white border-r p-4 flex flex-col">
-        <div className="text-lg font-semibold mb-8">NutriPlanner</div>
-        <nav className="space-y-1 flex-1">
-          {["Consultório", "Estudos", "Marketing", "Ferramentas", "Suporte", "Ver chat", "Extensões", "Novidades"].map((item, index) => (
-            <div 
-              key={index} 
-              className={`flex items-center p-3 rounded-lg ${index === 0 ? 'bg-blue-50 text-blue-600' : 'hover:bg-gray-100'}`}
-            >
-              <span>{item}</span>
-            </div>
-          ))}
-        </nav>
+    <div className="flex flex-col bg-gradient-to-br from-blue-50 via-background to-green-50 text-gray-800 font-sans rounded-xl overflow-hidden shadow-2xl border border-primary/20">
+      {/* Top Bar */}
+      <div className="flex items-center justify-between p-4 bg-white/90 backdrop-blur-sm border-b border-primary/20">
+        <div className="flex items-center gap-2">
+          <div className="h-8 w-8 bg-gradient-to-r from-blue-600 to-primary rounded-full flex items-center justify-center">
+            <span className="text-white font-medium">N</span>
+          </div>
+          <span className="font-semibold bg-gradient-to-r from-blue-600 via-primary to-green-600 bg-clip-text text-transparent">NutriPlanner</span>
+        </div>
+        <div className="flex items-center gap-4">
+          <button className="p-2 rounded-lg hover:bg-primary/10 transition-colors">
+            <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            </svg>
+          </button>
+          <div className="h-8 w-8 bg-primary/10 rounded-full flex items-center justify-center">
+            <span className="text-primary font-medium">U</span>
+          </div>
+        </div>
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 overflow-auto p-6">
-        {/* Patients Section */}
-        <div className="bg-white rounded-lg shadow-sm border p-6 mb-6">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-            <h2 className="text-lg font-semibold flex items-center">
-              <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-              Seus pacientes
-            </h2>
-            <div className="flex flex-wrap gap-2">
-              <button className="px-3 py-1.5 text-xs border rounded-md hover:bg-gray-50">
-                Importar pacientes
-              </button>
-              <button className="px-3 py-1.5 text-xs border rounded-md hover:bg-gray-50">
-                Ver todos
-              </button>
-              <button className="px-3 py-1.5 text-xs border rounded-md hover:bg-gray-50">
-                Aniversariantes
-              </button>
+      <div className="flex-1 p-6">
+        {/* Stats Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+          {stats.map((stat, index) => (
+            <div
+              key={index}
+              className="bg-white/90 backdrop-blur-sm p-4 rounded-lg border border-primary/20 hover:border-primary/40 transition-all duration-300"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-muted-foreground">{stat.label}</span>
+                <span className="text-xs px-2 py-1 bg-green-100 text-green-600 rounded-full">{stat.change}</span>
+              </div>
+              <div className="text-2xl font-bold mt-2">{stat.value}</div>
             </div>
-          </div>
+          ))}
+        </div>
 
-          <div className="relative mb-4">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
-            <input
-              type="text"
-              placeholder="Busque pelo nome, CPF, telefone ou pela tag do paciente"
-              className="w-full pl-9 pr-4 py-2 text-sm border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-200"
-            />
-          </div>
-
-          <button className="flex items-center px-3 py-2 mb-4 text-sm text-blue-600 border border-blue-200 rounded-md bg-blue-50 hover:bg-blue-100 w-full sm:w-auto">
-            <UserPlus className="mr-2" size={14} />
-            adicionar paciente
-          </button>
-
-          <div className="border rounded-md overflow-hidden">
+        {/* Patients Progress */}
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold mb-4 bg-gradient-to-r from-blue-600 via-primary to-green-600 bg-clip-text text-transparent">Progresso dos Pacientes</h2>
+          <div className="space-y-4">
             {patients.map((patient, index) => (
-              <div 
-                key={index} 
-                className={`flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 ${index !== patients.length - 1 ? 'border-b' : ''} hover:bg-gray-50`}
+              <div
+                key={index}
+                className="bg-white/90 backdrop-blur-sm p-4 rounded-lg border border-primary/20 hover:border-primary/40 transition-all duration-300"
               >
-                <span className="font-medium text-sm">{patient.name}</span>
-                <span className="text-xs text-gray-500 mt-1 sm:mt-0">Modificado em {patient.modified}</span>
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-3">
+                    <div className="h-10 w-10 bg-gradient-to-r from-blue-500/20 to-primary/20 rounded-full flex items-center justify-center">
+                      <span className="text-primary font-medium">
+                        {patient.name.split(' ')[0][0]}
+                      </span>
+                    </div>
+                    <div>
+                      <h3 className="font-medium">{patient.name}</h3>
+                      <p className="text-sm text-muted-foreground">Última visita: {patient.lastVisit}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="h-2 w-2 rounded-full bg-green-500"></div>
+                    <span className="text-sm text-muted-foreground">{patient.status}</span>
+                  </div>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div
+                    className="bg-gradient-to-r from-blue-500 to-primary h-2 rounded-full"
+                    style={{ width: `${patient.progress}%` }}
+                  ></div>
+                </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Bottom Sections */}
-        
+        {/* Quick Actions */}
+        <div>
+          <h2 className="text-xl font-semibold mb-4 bg-gradient-to-r from-blue-600 via-primary to-green-600 bg-clip-text text-transparent">Ações Rápidas</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { label: "Nova Consulta", color: "bg-gradient-to-r from-blue-600 to-blue-500" },
+              { label: "Criar Plano", color: "bg-gradient-to-r from-primary to-primary/90" },
+              { label: "Enviar Lembrete", color: "bg-gradient-to-r from-green-600 to-green-500" },
+              { label: "Ver Relatórios", color: "bg-gradient-to-r from-blue-500 to-primary" },
+            ].map((action, index) => (
+              <button
+                key={index}
+                className={`${action.color} text-white p-4 rounded-lg hover:opacity-90 transition-all duration-300 hover:shadow-lg`}
+              >
+                {action.label}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
