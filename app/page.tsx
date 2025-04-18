@@ -4,36 +4,27 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CheckCircle2, Calendar, Users, Send, Bell, Shield, FileText, BarChart3, Clock, Star } from "lucide-react";
 import Image from "next/image";
+import { MainNav } from "@/app/components/main-nav";
+import { WhatsAppButton } from "@/app/components/whatsapp-button";
+import { motion } from "framer-motion";
+import { Hero } from "./components/hero";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
+      <MainNav />
+      <WhatsAppButton />
       {/* Header */}
-      <header className="relative bg-gradient-to-br from-primary/20 via-primary/10 to-background py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-background/0 to-background/80"></div>
-        <div className="container mx-auto px-4 relative">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70 leading-tight">
-              Simplifique seu Consultório com Gestão de Planos Alimentares e Atendimentos Online
-            </h1>
-            <p className="text-xl text-muted-foreground mb-12">
-              Gerencie seus pacientes, crie planos alimentares personalizados e automatize seus atendimentos com facilidade.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl">
-                Experimente Gratuitamente
-              </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-primary text-primary hover:bg-primary/10 transition-all duration-300">
-                Saiba Mais
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
-
+      <Hero/>
       {/* Seção de Benefícios */}
-      <section className="py-24">
+      <motion.section 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="py-24"
+        id="beneficios"
+      >
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Benefícios para seu Consultório</h2>
           <p className="text-xl text-muted-foreground text-center mb-16">Tudo que você precisa para gerenciar seu consultório com eficiência</p>
@@ -56,10 +47,17 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Demonstração Visual */}
-      <section className="py-24 bg-muted/30">
+      <motion.section 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="py-24 bg-muted/30"
+        id="demonstracao"
+      >
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Veja Como Funciona</h2>
           <p className="text-xl text-muted-foreground text-center mb-16">Interface intuitiva e fácil de usar</p>
@@ -93,10 +91,17 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Depoimentos */}
-      <section className="py-24">
+      <motion.section 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="py-24"
+        id="depoimentos"
+      >
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">O Que Dizem Nossos Usuários</h2>
           <p className="text-xl text-muted-foreground text-center mb-16">Veja o que os nutricionistas estão falando sobre nossa plataforma</p>
@@ -133,10 +138,17 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Planos */}
-      <section className="py-24 bg-muted/30">
+      <motion.section 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="py-24 bg-muted/30"
+        id="planos"
+      >
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Escolha o Plano Ideal</h2>
           <p className="text-xl text-muted-foreground text-center mb-16">Planos flexíveis para atender às suas necessidades</p>
@@ -192,10 +204,16 @@ export default function Home() {
             </Card>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* CTA Final */}
-      <section className="py-24">
+      <motion.section 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="py-24"
+      >
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Pronto para Transformar seu Consultório?</h2>
           <p className="text-xl text-muted-foreground mb-12">
@@ -205,10 +223,16 @@ export default function Home() {
             Experimente Gratuitamente
           </Button>
         </div>
-      </section>
+      </motion.section>
 
       {/* Footer */}
-      <footer className="bg-muted/50 py-16">
+      <motion.footer 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="bg-muted/50 py-16"
+      >
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
             <div>
@@ -240,7 +264,7 @@ export default function Home() {
             © 2024 NutriPlataforma. Todos os direitos reservados.
           </div>
         </div>
-      </footer>
+      </motion.footer>
     </div>
   );
 }
