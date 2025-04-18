@@ -8,7 +8,7 @@ export function Hero() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="relative  overflow-hidden"
+      className="relative  overflow-hidden pt-32"
       id="home"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-background/0 to-background/80"></div>
