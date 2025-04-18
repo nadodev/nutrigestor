@@ -3,10 +3,11 @@ import { getFirestore } from "firebase-admin/firestore"
 import "server-only"
 
 
+
 const firebaseCert = cert({
     projectId: process.env.FIREBASE_PROJECT_ID,
     clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-    privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    privateKey: process.env.FIREBASE_PRIVATE_KEY!.replace(/\\n/g, '\n'),
 })
 
 if (!getApps().length) {
